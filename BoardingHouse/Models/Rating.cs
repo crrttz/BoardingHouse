@@ -7,15 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BoardingHouse
+namespace BoardingHouse.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Comment
+    public partial class Rating
     {
         public System.Guid Id { get; set; }
-        public string Content { get; set; }
+        public Nullable<int> Rating1 { get; set; }
         public Nullable<System.DateTime> CreateAt { get; set; }
         public Nullable<System.DateTime> UpdateAt { get; set; }
         public Nullable<bool> Is_Delete { get; set; }

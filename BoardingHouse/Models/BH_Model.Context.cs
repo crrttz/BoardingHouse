@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BoardingHouse
+namespace BoardingHouse.Models
 {
     using System;
     using System.Data.Entity;

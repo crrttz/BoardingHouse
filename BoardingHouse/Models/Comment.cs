@@ -7,16 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BoardingHouse
+namespace BoardingHouse.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class History
+    public partial class Comment
     {
         public System.Guid Id { get; set; }
-        public Nullable<System.DateTime> StartDate { get; set; }
-        public Nullable<System.DateTime> EndDate { get; set; }
+        public string Content { get; set; }
+        public Nullable<System.DateTime> CreateAt { get; set; }
+        public Nullable<System.DateTime> UpdateAt { get; set; }
         public Nullable<bool> Is_Delete { get; set; }
     
         public virtual Account Account { get; set; }

@@ -7,26 +7,24 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BoardingHouse
+namespace BoardingHouse.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class District
+    public partial class Role
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public District()
+        public Role()
         {
-            this.Rooms = new HashSet<Room>();
+            this.Accounts = new HashSet<Account>();
         }
     
         public System.Guid Id { get; set; }
-        public string Name { get; set; }
-        public Nullable<bool> Is_Delete { get; set; }
-        public Nullable<System.DateTime> CreateAt { get; set; }
-        public Nullable<System.DateTime> UpdateAt { get; set; }
+        public string RoleName { get; set; }
+        public bool Is_Delete { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Room> Rooms { get; set; }
+        public virtual ICollection<Account> Accounts { get; set; }
     }
 }

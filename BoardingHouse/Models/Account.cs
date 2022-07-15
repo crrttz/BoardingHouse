@@ -7,25 +7,39 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BoardingHouse
+namespace BoardingHouse.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Category
+    public partial class Account
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Category()
+        public Account()
         {
+            this.Comments = new HashSet<Comment>();
+            this.Histories = new HashSet<History>();
+            this.Ratings = new HashSet<Rating>();
             this.Rooms = new HashSet<Room>();
         }
     
         public System.Guid Id { get; set; }
-        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public string FullName { get; set; }
+        public string Address { get; set; }
         public Nullable<System.DateTime> CreateAt { get; set; }
         public Nullable<System.DateTime> UpdateAt { get; set; }
+        public Nullable<bool> Is_Active { get; set; }
         public Nullable<bool> Is_Delete { get; set; }
     
+        public virtual Role Role { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Comment> Comments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<History> Histories { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Rating> Ratings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Room> Rooms { get; set; }
     }
