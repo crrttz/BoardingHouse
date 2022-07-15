@@ -15,6 +15,8 @@ namespace BoardingHouse.Models
     public partial class Comment
     {
         public System.Guid Id { get; set; }
+        public Nullable<System.Guid> RoomId { get; set; }
+        public Nullable<System.Guid> AccountId { get; set; }
         public string Content { get; set; }
         public Nullable<System.DateTime> CreateAt { get; set; }
         public Nullable<System.DateTime> UpdateAt { get; set; }

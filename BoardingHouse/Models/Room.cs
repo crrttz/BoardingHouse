@@ -23,6 +23,9 @@ namespace BoardingHouse.Models
         }
     
         public System.Guid Id { get; set; }
+        public Nullable<System.Guid> OwnerId { get; set; }
+        public Nullable<System.Guid> CategoryId { get; set; }
+        public Nullable<System.Guid> DistrictId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public string Address { get; set; }

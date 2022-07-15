@@ -24,6 +24,7 @@ namespace BoardingHouse.Models
         }
     
         public System.Guid Id { get; set; }
+        public Nullable<System.Guid> RoleId { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
         public string FullName { get; set; }

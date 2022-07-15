@@ -282,6 +282,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="RoleId" Type="Guid" />
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
           <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -312,6 +313,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="RoomId" Type="Guid" />
+          <Property Name="AccountId" Type="Guid" />
           <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreateAt" Type="DateTime" Precision="3" />
           <Property Name="UpdateAt" Type="DateTime" Precision="3" />
@@ -335,6 +338,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="AccountId" Type="Guid" />
+          <Property Name="RoomId" Type="Guid" />
           <Property Name="StartDate" Type="DateTime" Precision="3" />
           <Property Name="EndDate" Type="DateTime" Precision="3" />
           <Property Name="Is_Delete" Type="Boolean" />
@@ -346,6 +351,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="RoomId" Type="Guid" />
+          <Property Name="AccountId" Type="Guid" />
           <Property Name="Rating1" Type="Int32" />
           <Property Name="CreateAt" Type="DateTime" Precision="3" />
           <Property Name="UpdateAt" Type="DateTime" Precision="0" />
@@ -367,6 +374,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="OwnerId" Type="Guid" />
+          <Property Name="CategoryId" Type="Guid" />
+          <Property Name="DistrictId" Type="Guid" />
           <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -387,42 +397,122 @@
         <Association Name="FK_Account_Role">
           <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
           <End Role="Account" Type="Self.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_Comment_Account">
           <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
           <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_History_Account">
           <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
           <End Role="History" Type="Self.History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="History">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_Rating_Account">
           <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
           <End Role="Rating" Type="Self.Rating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Rating">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_Room_Account">
           <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
           <End Role="Room" Type="Self.Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Room">
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_Room_Category">
           <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
           <End Role="Room" Type="Self.Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Room">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_Comment_Room">
           <End Role="Room" Type="Self.Room" Multiplicity="0..1" />
           <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="RoomId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_Room_District">
           <End Role="District" Type="Self.District" Multiplicity="0..1" />
           <End Role="Room" Type="Self.Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="District">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Room">
+              <PropertyRef Name="DistrictId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_History_Room">
           <End Role="Room" Type="Self.Room" Multiplicity="0..1" />
           <End Role="History" Type="Self.History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="History">
+              <PropertyRef Name="RoomId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_Rating_Room">
           <End Role="Room" Type="Self.Room" Multiplicity="0..1" />
           <End Role="Rating" Type="Self.Rating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Rating">
+              <PropertyRef Name="RoomId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <EntityContainer Name="BOARDING_HOUSEEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Accounts" EntityType="Self.Account" />
@@ -484,6 +574,7 @@
             <EntityTypeMapping TypeName="BOARDING_HOUSEModel.Account">
               <MappingFragment StoreEntitySet="Account">
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="FullName" ColumnName="FullName" />
@@ -510,6 +601,8 @@
             <EntityTypeMapping TypeName="BOARDING_HOUSEModel.Comment">
               <MappingFragment StoreEntitySet="Comment">
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RoomId" ColumnName="RoomId" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
                 <ScalarProperty Name="Content" ColumnName="Content" />
                 <ScalarProperty Name="CreateAt" ColumnName="CreateAt" />
                 <ScalarProperty Name="UpdateAt" ColumnName="UpdateAt" />
@@ -532,6 +625,8 @@
             <EntityTypeMapping TypeName="BOARDING_HOUSEModel.History">
               <MappingFragment StoreEntitySet="History">
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="RoomId" ColumnName="RoomId" />
                 <ScalarProperty Name="StartDate" ColumnName="StartDate" />
                 <ScalarProperty Name="EndDate" ColumnName="EndDate" />
                 <ScalarProperty Name="Is_Delete" ColumnName="Is_Delete" />
@@ -542,6 +637,8 @@
             <EntityTypeMapping TypeName="BOARDING_HOUSEModel.Rating">
               <MappingFragment StoreEntitySet="Rating">
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RoomId" ColumnName="RoomId" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
                 <ScalarProperty Name="Rating1" ColumnName="Rating" />
                 <ScalarProperty Name="CreateAt" ColumnName="CreateAt" />
                 <ScalarProperty Name="UpdateAt" ColumnName="UpdateAt" />
@@ -562,6 +659,9 @@
             <EntityTypeMapping TypeName="BOARDING_HOUSEModel.Room">
               <MappingFragment StoreEntitySet="Room">
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
@@ -575,96 +675,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="FK_Account_Role" TypeName="BOARDING_HOUSEModel.FK_Account_Role" StoreEntitySet="Account">
-            <EndProperty Name="Role">
-              <ScalarProperty Name="Id" ColumnName="RoleId" />
-            </EndProperty>
-            <EndProperty Name="Account">
-              <ScalarProperty Name="Id" ColumnName="Id" />
-            </EndProperty>
-            <Condition IsNull="false" ColumnName="RoleId" />
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_Comment_Account" TypeName="BOARDING_HOUSEModel.FK_Comment_Account" StoreEntitySet="Comment">
-            <EndProperty Name="Account">
-              <ScalarProperty Name="Id" ColumnName="AccountId" />
-            </EndProperty>
-            <EndProperty Name="Comment">
-              <ScalarProperty Name="Id" ColumnName="Id" />
-            </EndProperty>
-            <Condition IsNull="false" ColumnName="AccountId" />
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_History_Account" TypeName="BOARDING_HOUSEModel.FK_History_Account" StoreEntitySet="History">
-            <EndProperty Name="Account">
-              <ScalarProperty Name="Id" ColumnName="AccountId" />
-            </EndProperty>
-            <EndProperty Name="History">
-              <ScalarProperty Name="Id" ColumnName="Id" />
-            </EndProperty>
-            <Condition IsNull="false" ColumnName="AccountId" />
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_Rating_Account" TypeName="BOARDING_HOUSEModel.FK_Rating_Account" StoreEntitySet="Rating">
-            <EndProperty Name="Account">
-              <ScalarProperty Name="Id" ColumnName="AccountId" />
-            </EndProperty>
-            <EndProperty Name="Rating">
-              <ScalarProperty Name="Id" ColumnName="Id" />
-            </EndProperty>
-            <Condition IsNull="false" ColumnName="AccountId" />
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_Room_Account" TypeName="BOARDING_HOUSEModel.FK_Room_Account" StoreEntitySet="Room">
-            <EndProperty Name="Account">
-              <ScalarProperty Name="Id" ColumnName="OwnerId" />
-            </EndProperty>
-            <EndProperty Name="Room">
-              <ScalarProperty Name="Id" ColumnName="Id" />
-            </EndProperty>
-            <Condition IsNull="false" ColumnName="OwnerId" />
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_Room_Category" TypeName="BOARDING_HOUSEModel.FK_Room_Category" StoreEntitySet="Room">
-            <EndProperty Name="Category">
-              <ScalarProperty Name="Id" ColumnName="CategoryId" />
-            </EndProperty>
-            <EndProperty Name="Room">
-              <ScalarProperty Name="Id" ColumnName="Id" />
-            </EndProperty>
-            <Condition IsNull="false" ColumnName="CategoryId" />
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_Comment_Room" TypeName="BOARDING_HOUSEModel.FK_Comment_Room" StoreEntitySet="Comment">
-            <EndProperty Name="Room">
-              <ScalarProperty Name="Id" ColumnName="RoomId" />
-            </EndProperty>
-            <EndProperty Name="Comment">
-              <ScalarProperty Name="Id" ColumnName="Id" />
-            </EndProperty>
-            <Condition IsNull="false" ColumnName="RoomId" />
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_Room_District" TypeName="BOARDING_HOUSEModel.FK_Room_District" StoreEntitySet="Room">
-            <EndProperty Name="District">
-              <ScalarProperty Name="Id" ColumnName="DistrictId" />
-            </EndProperty>
-            <EndProperty Name="Room">
-              <ScalarProperty Name="Id" ColumnName="Id" />
-            </EndProperty>
-            <Condition IsNull="false" ColumnName="DistrictId" />
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_History_Room" TypeName="BOARDING_HOUSEModel.FK_History_Room" StoreEntitySet="History">
-            <EndProperty Name="Room">
-              <ScalarProperty Name="Id" ColumnName="RoomId" />
-            </EndProperty>
-            <EndProperty Name="History">
-              <ScalarProperty Name="Id" ColumnName="Id" />
-            </EndProperty>
-            <Condition IsNull="false" ColumnName="RoomId" />
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_Rating_Room" TypeName="BOARDING_HOUSEModel.FK_Rating_Room" StoreEntitySet="Rating">
-            <EndProperty Name="Room">
-              <ScalarProperty Name="Id" ColumnName="RoomId" />
-            </EndProperty>
-            <EndProperty Name="Rating">
-              <ScalarProperty Name="Id" ColumnName="Id" />
-            </EndProperty>
-            <Condition IsNull="false" ColumnName="RoomId" />
-          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -680,7 +690,7 @@
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="true" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>

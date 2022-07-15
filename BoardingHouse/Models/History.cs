@@ -15,6 +15,8 @@ namespace BoardingHouse.Models
     public partial class History
     {
         public System.Guid Id { get; set; }
+        public Nullable<System.Guid> AccountId { get; set; }
+        public Nullable<System.Guid> RoomId { get; set; }
         public Nullable<System.DateTime> StartDate { get; set; }
         public Nullable<System.DateTime> EndDate { get; set; }
         public Nullable<bool> Is_Delete { get; set; }

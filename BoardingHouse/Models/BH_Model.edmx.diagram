@@ -4,15 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="54efd66b9d3440a8a69f357c3d187971" Name="Diagram1">
-        <EntityTypeShape EntityType="BOARDING_HOUSEModel.Account" Width="1.5" PointX="3" PointY="6.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="BOARDING_HOUSEModel.Category" Width="1.5" PointX="3" PointY="11.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="BOARDING_HOUSEModel.Comment" Width="1.5" PointX="5.25" PointY="7" IsExpanded="true" />
-        <EntityTypeShape EntityType="BOARDING_HOUSEModel.District" Width="1.5" PointX="3" PointY="14.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="BOARDING_HOUSEModel.History" Width="1.5" PointX="5.25" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="BOARDING_HOUSEModel.Rating" Width="1.5" PointX="8.25" PointY="7" IsExpanded="true" />
-        <EntityTypeShape EntityType="BOARDING_HOUSEModel.Role" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="BOARDING_HOUSEModel.Room" Width="1.5" PointX="5.25" PointY="11.125" IsExpanded="true" />
+      <Diagram DiagramId="499d5df7236b4495bc0a3acb56102824" Name="Diagram1">
+        <EntityTypeShape EntityType="BOARDING_HOUSEModel.Account" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BOARDING_HOUSEModel.Category" Width="1.5" PointX="3" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BOARDING_HOUSEModel.Comment" Width="1.5" PointX="5.25" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BOARDING_HOUSEModel.District" Width="1.5" PointX="3" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BOARDING_HOUSEModel.History" Width="1.5" PointX="8.25" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BOARDING_HOUSEModel.Rating" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BOARDING_HOUSEModel.Role" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BOARDING_HOUSEModel.Room" Width="1.5" PointX="5.25" PointY="11.75" IsExpanded="true" />
         <AssociationConnector Association="BOARDING_HOUSEModel.FK_Account_Role" ManuallyRouted="false" />
         <AssociationConnector Association="BOARDING_HOUSEModel.FK_Comment_Account" ManuallyRouted="false" />
         <AssociationConnector Association="BOARDING_HOUSEModel.FK_History_Account" ManuallyRouted="false" />
