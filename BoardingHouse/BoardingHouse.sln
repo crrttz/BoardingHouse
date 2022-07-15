@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32602.215
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoardingHouse", "BoardingHouse.csproj", "{61F23ACA-AD90-4322-8FF2-28BAA5B25287}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{61F23ACA-AD90-4322-8FF2-28BAA5B25287}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61F23ACA-AD90-4322-8FF2-28BAA5B25287}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61F23ACA-AD90-4322-8FF2-28BAA5B25287}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61F23ACA-AD90-4322-8FF2-28BAA5B25287}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {35CA2E96-B733-4867-9EC0-7675F32F6370}
+	EndGlobalSection
+EndGlobal

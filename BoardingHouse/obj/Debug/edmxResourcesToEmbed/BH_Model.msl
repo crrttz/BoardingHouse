@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BOARDING_HOUSEModelStoreContainer" CdmEntityContainer="BOARDING_HOUSEEntities">
+    <EntitySetMapping Name="Accounts">
+      <EntityTypeMapping TypeName="BOARDING_HOUSEModel.Account">
+        <MappingFragment StoreEntitySet="Account">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="CreateAt" ColumnName="CreateAt" />
+          <ScalarProperty Name="UpdateAt" ColumnName="UpdateAt" />
+          <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
+          <ScalarProperty Name="Is_Delete" ColumnName="Is_Delete" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="BOARDING_HOUSEModel.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CreateAt" ColumnName="CreateAt" />
+          <ScalarProperty Name="UpdateAt" ColumnName="UpdateAt" />
+          <ScalarProperty Name="Is_Delete" ColumnName="Is_Delete" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Comments">
+      <EntityTypeMapping TypeName="BOARDING_HOUSEModel.Comment">
+        <MappingFragment StoreEntitySet="Comment">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="CreateAt" ColumnName="CreateAt" />
+          <ScalarProperty Name="UpdateAt" ColumnName="UpdateAt" />
+          <ScalarProperty Name="Is_Delete" ColumnName="Is_Delete" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Districts">
+      <EntityTypeMapping TypeName="BOARDING_HOUSEModel.District">
+        <MappingFragment StoreEntitySet="District">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Is_Delete" ColumnName="Is_Delete" />
+          <ScalarProperty Name="CreateAt" ColumnName="CreateAt" />
+          <ScalarProperty Name="UpdateAt" ColumnName="UpdateAt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Histories">
+      <EntityTypeMapping TypeName="BOARDING_HOUSEModel.History">
+        <MappingFragment StoreEntitySet="History">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="Is_Delete" ColumnName="Is_Delete" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ratings">
+      <EntityTypeMapping TypeName="BOARDING_HOUSEModel.Rating">
+        <MappingFragment StoreEntitySet="Rating">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Rating1" ColumnName="Rating" />
+          <ScalarProperty Name="CreateAt" ColumnName="CreateAt" />
+          <ScalarProperty Name="UpdateAt" ColumnName="UpdateAt" />
+          <ScalarProperty Name="Is_Delete" ColumnName="Is_Delete" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="BOARDING_HOUSEModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="Is_Delete" ColumnName="Is_Delete" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rooms">
+      <EntityTypeMapping TypeName="BOARDING_HOUSEModel.Room">
+        <MappingFragment StoreEntitySet="Room">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Coordinates" ColumnName="Coordinates" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Images" ColumnName="Images" />
+          <ScalarProperty Name="CreateAt" ColumnName="CreateAt" />
+          <ScalarProperty Name="UpdateAt" ColumnName="UpdateAt" />
+          <ScalarProperty Name="Is_Rented" ColumnName="Is_Rented" />
+          <ScalarProperty Name="Is_Delete" ColumnName="Is_Delete" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="FK_Account_Role" TypeName="BOARDING_HOUSEModel.FK_Account_Role" StoreEntitySet="Account">
+      <EndProperty Name="Role">
+        <ScalarProperty Name="Id" ColumnName="RoleId" />
+      </EndProperty>
+      <EndProperty Name="Account">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition IsNull="false" ColumnName="RoleId" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Comment_Account" TypeName="BOARDING_HOUSEModel.FK_Comment_Account" StoreEntitySet="Comment">
+      <EndProperty Name="Account">
+        <ScalarProperty Name="Id" ColumnName="AccountId" />
+      </EndProperty>
+      <EndProperty Name="Comment">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition IsNull="false" ColumnName="AccountId" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_History_Account" TypeName="BOARDING_HOUSEModel.FK_History_Account" StoreEntitySet="History">
+      <EndProperty Name="Account">
+        <ScalarProperty Name="Id" ColumnName="AccountId" />
+      </EndProperty>
+      <EndProperty Name="History">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition IsNull="false" ColumnName="AccountId" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Rating_Account" TypeName="BOARDING_HOUSEModel.FK_Rating_Account" StoreEntitySet="Rating">
+      <EndProperty Name="Account">
+        <ScalarProperty Name="Id" ColumnName="AccountId" />
+      </EndProperty>
+      <EndProperty Name="Rating">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition IsNull="false" ColumnName="AccountId" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Room_Account" TypeName="BOARDING_HOUSEModel.FK_Room_Account" StoreEntitySet="Room">
+      <EndProperty Name="Account">
+        <ScalarProperty Name="Id" ColumnName="OwnerId" />
+      </EndProperty>
+      <EndProperty Name="Room">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition IsNull="false" ColumnName="OwnerId" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Room_Category" TypeName="BOARDING_HOUSEModel.FK_Room_Category" StoreEntitySet="Room">
+      <EndProperty Name="Category">
+        <ScalarProperty Name="Id" ColumnName="CategoryId" />
+      </EndProperty>
+      <EndProperty Name="Room">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition IsNull="false" ColumnName="CategoryId" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Comment_Room" TypeName="BOARDING_HOUSEModel.FK_Comment_Room" StoreEntitySet="Comment">
+      <EndProperty Name="Room">
+        <ScalarProperty Name="Id" ColumnName="RoomId" />
+      </EndProperty>
+      <EndProperty Name="Comment">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition IsNull="false" ColumnName="RoomId" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Room_District" TypeName="BOARDING_HOUSEModel.FK_Room_District" StoreEntitySet="Room">
+      <EndProperty Name="District">
+        <ScalarProperty Name="Id" ColumnName="DistrictId" />
+      </EndProperty>
+      <EndProperty Name="Room">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition IsNull="false" ColumnName="DistrictId" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_History_Room" TypeName="BOARDING_HOUSEModel.FK_History_Room" StoreEntitySet="History">
+      <EndProperty Name="Room">
+        <ScalarProperty Name="Id" ColumnName="RoomId" />
+      </EndProperty>
+      <EndProperty Name="History">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition IsNull="false" ColumnName="RoomId" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_Rating_Room" TypeName="BOARDING_HOUSEModel.FK_Rating_Room" StoreEntitySet="Rating">
+      <EndProperty Name="Room">
+        <ScalarProperty Name="Id" ColumnName="RoomId" />
+      </EndProperty>
+      <EndProperty Name="Rating">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition IsNull="false" ColumnName="RoomId" />
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

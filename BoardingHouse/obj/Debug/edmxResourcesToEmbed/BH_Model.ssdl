@@ -1,0 +1,270 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BOARDING_HOUSEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RoleId" Type="uniqueidentifier" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" />
+    <Property Name="Password" Type="nchar" MaxLength="100" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="CreateAt" Type="datetime" />
+    <Property Name="UpdateAt" Type="datetime" />
+    <Property Name="Is_Active" Type="bit" />
+    <Property Name="Is_Delete" Type="bit" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="CreateAt" Type="datetime" />
+    <Property Name="UpdateAt" Type="datetime" />
+    <Property Name="Is_Delete" Type="bit" />
+  </EntityType>
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RoomId" Type="uniqueidentifier" />
+    <Property Name="AccountId" Type="uniqueidentifier" />
+    <Property Name="Content" Type="nvarchar(max)" />
+    <Property Name="CreateAt" Type="datetime" />
+    <Property Name="UpdateAt" Type="datetime" />
+    <Property Name="Is_Delete" Type="bit" />
+  </EntityType>
+  <EntityType Name="District">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Is_Delete" Type="bit" />
+    <Property Name="CreateAt" Type="datetime" />
+    <Property Name="UpdateAt" Type="datetime" />
+  </EntityType>
+  <EntityType Name="History">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="AccountId" Type="uniqueidentifier" />
+    <Property Name="RoomId" Type="uniqueidentifier" />
+    <Property Name="StartDate" Type="datetime" />
+    <Property Name="EndDate" Type="datetime" />
+    <Property Name="Is_Delete" Type="bit" />
+  </EntityType>
+  <EntityType Name="Rating">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RoomId" Type="uniqueidentifier" />
+    <Property Name="AccountId" Type="uniqueidentifier" />
+    <Property Name="Rating" Type="int" />
+    <Property Name="CreateAt" Type="datetime" />
+    <Property Name="UpdateAt" Type="date" />
+    <Property Name="Is_Delete" Type="bit" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar(max)" />
+    <Property Name="Is_Delete" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Room">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="OwnerId" Type="uniqueidentifier" />
+    <Property Name="CategoryId" Type="uniqueidentifier" />
+    <Property Name="DistrictId" Type="uniqueidentifier" />
+    <Property Name="Title" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="Coordinates" Type="nvarchar(max)" />
+    <Property Name="Price" Type="float" />
+    <Property Name="Images" Type="nvarchar(max)" />
+    <Property Name="CreateAt" Type="datetime" />
+    <Property Name="UpdateAt" Type="datetime" />
+    <Property Name="Is_Rented" Type="bit" />
+    <Property Name="Is_Delete" Type="bit" />
+  </EntityType>
+  <Association Name="FK_Account_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+    <End Role="Account" Type="Self.Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comment_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="AccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comment_Room">
+    <End Role="Room" Type="Self.Room" Multiplicity="0..1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="RoomId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_History_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="History" Type="Self.History" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="History">
+        <PropertyRef Name="AccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_History_Room">
+    <End Role="Room" Type="Self.Room" Multiplicity="0..1" />
+    <End Role="History" Type="Self.History" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="History">
+        <PropertyRef Name="RoomId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rating_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="Rating" Type="Self.Rating" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Rating">
+        <PropertyRef Name="AccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Rating_Room">
+    <End Role="Room" Type="Self.Room" Multiplicity="0..1" />
+    <End Role="Rating" Type="Self.Rating" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Rating">
+        <PropertyRef Name="RoomId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Room_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="Room" Type="Self.Room" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Room">
+        <PropertyRef Name="OwnerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Room_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Room" Type="Self.Room" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Room">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Room_District">
+    <End Role="District" Type="Self.District" Multiplicity="0..1" />
+    <End Role="Room" Type="Self.Room" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="District">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Room">
+        <PropertyRef Name="DistrictId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BOARDING_HOUSEModelStoreContainer">
+    <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="District" EntityType="Self.District" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="History" EntityType="Self.History" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rating" EntityType="Self.Rating" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Room" EntityType="Self.Room" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Account_Role" Association="Self.FK_Account_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="Account" EntitySet="Account" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comment_Account" Association="Self.FK_Comment_Account">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="Comment" EntitySet="Comment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comment_Room" Association="Self.FK_Comment_Room">
+      <End Role="Room" EntitySet="Room" />
+      <End Role="Comment" EntitySet="Comment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_History_Account" Association="Self.FK_History_Account">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="History" EntitySet="History" />
+    </AssociationSet>
+    <AssociationSet Name="FK_History_Room" Association="Self.FK_History_Room">
+      <End Role="Room" EntitySet="Room" />
+      <End Role="History" EntitySet="History" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rating_Account" Association="Self.FK_Rating_Account">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="Rating" EntitySet="Rating" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rating_Room" Association="Self.FK_Rating_Room">
+      <End Role="Room" EntitySet="Room" />
+      <End Role="Rating" EntitySet="Rating" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Room_Account" Association="Self.FK_Room_Account">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="Room" EntitySet="Room" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Room_Category" Association="Self.FK_Room_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Room" EntitySet="Room" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Room_District" Association="Self.FK_Room_District">
+      <End Role="District" EntitySet="District" />
+      <End Role="Room" EntitySet="Room" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

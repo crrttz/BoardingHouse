@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BOARDING_HOUSEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreateAt" Type="DateTime" Precision="3" />
+    <Property Name="UpdateAt" Type="DateTime" Precision="3" />
+    <Property Name="Is_Active" Type="Boolean" />
+    <Property Name="Is_Delete" Type="Boolean" />
+    <NavigationProperty Name="Role" Relationship="Self.FK_Account_Role" FromRole="Account" ToRole="Role" />
+    <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_Account" FromRole="Account" ToRole="Comment" />
+    <NavigationProperty Name="Histories" Relationship="Self.FK_History_Account" FromRole="Account" ToRole="History" />
+    <NavigationProperty Name="Ratings" Relationship="Self.FK_Rating_Account" FromRole="Account" ToRole="Rating" />
+    <NavigationProperty Name="Rooms" Relationship="Self.FK_Room_Account" FromRole="Account" ToRole="Room" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreateAt" Type="DateTime" Precision="3" />
+    <Property Name="UpdateAt" Type="DateTime" Precision="3" />
+    <Property Name="Is_Delete" Type="Boolean" />
+    <NavigationProperty Name="Rooms" Relationship="Self.FK_Room_Category" FromRole="Category" ToRole="Room" />
+  </EntityType>
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreateAt" Type="DateTime" Precision="3" />
+    <Property Name="UpdateAt" Type="DateTime" Precision="3" />
+    <Property Name="Is_Delete" Type="Boolean" />
+    <NavigationProperty Name="Account" Relationship="Self.FK_Comment_Account" FromRole="Comment" ToRole="Account" />
+    <NavigationProperty Name="Room" Relationship="Self.FK_Comment_Room" FromRole="Comment" ToRole="Room" />
+  </EntityType>
+  <EntityType Name="District">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Is_Delete" Type="Boolean" />
+    <Property Name="CreateAt" Type="DateTime" Precision="3" />
+    <Property Name="UpdateAt" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Rooms" Relationship="Self.FK_Room_District" FromRole="District" ToRole="Room" />
+  </EntityType>
+  <EntityType Name="History">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="StartDate" Type="DateTime" Precision="3" />
+    <Property Name="EndDate" Type="DateTime" Precision="3" />
+    <Property Name="Is_Delete" Type="Boolean" />
+    <NavigationProperty Name="Account" Relationship="Self.FK_History_Account" FromRole="History" ToRole="Account" />
+    <NavigationProperty Name="Room" Relationship="Self.FK_History_Room" FromRole="History" ToRole="Room" />
+  </EntityType>
+  <EntityType Name="Rating">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Rating1" Type="Int32" />
+    <Property Name="CreateAt" Type="DateTime" Precision="3" />
+    <Property Name="UpdateAt" Type="DateTime" Precision="0" />
+    <Property Name="Is_Delete" Type="Boolean" />
+    <NavigationProperty Name="Account" Relationship="Self.FK_Rating_Account" FromRole="Rating" ToRole="Account" />
+    <NavigationProperty Name="Room" Relationship="Self.FK_Rating_Room" FromRole="Rating" ToRole="Room" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="RoleName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Is_Delete" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Accounts" Relationship="Self.FK_Account_Role" FromRole="Role" ToRole="Account" />
+  </EntityType>
+  <EntityType Name="Room">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Coordinates" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="Double" />
+    <Property Name="Images" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreateAt" Type="DateTime" Precision="3" />
+    <Property Name="UpdateAt" Type="DateTime" Precision="3" />
+    <Property Name="Is_Rented" Type="Boolean" />
+    <Property Name="Is_Delete" Type="Boolean" />
+    <NavigationProperty Name="Account" Relationship="Self.FK_Room_Account" FromRole="Room" ToRole="Account" />
+    <NavigationProperty Name="Category" Relationship="Self.FK_Room_Category" FromRole="Room" ToRole="Category" />
+    <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_Room" FromRole="Room" ToRole="Comment" />
+    <NavigationProperty Name="District" Relationship="Self.FK_Room_District" FromRole="Room" ToRole="District" />
+    <NavigationProperty Name="Histories" Relationship="Self.FK_History_Room" FromRole="Room" ToRole="History" />
+    <NavigationProperty Name="Ratings" Relationship="Self.FK_Rating_Room" FromRole="Room" ToRole="Rating" />
+  </EntityType>
+  <Association Name="FK_Account_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+    <End Role="Account" Type="Self.Account" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_Comment_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_History_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="History" Type="Self.History" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_Rating_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="Rating" Type="Self.Rating" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_Room_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="Room" Type="Self.Room" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_Room_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Room" Type="Self.Room" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_Comment_Room">
+    <End Role="Room" Type="Self.Room" Multiplicity="0..1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_Room_District">
+    <End Role="District" Type="Self.District" Multiplicity="0..1" />
+    <End Role="Room" Type="Self.Room" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_History_Room">
+    <End Role="Room" Type="Self.Room" Multiplicity="0..1" />
+    <End Role="History" Type="Self.History" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_Rating_Room">
+    <End Role="Room" Type="Self.Room" Multiplicity="0..1" />
+    <End Role="Rating" Type="Self.Rating" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="BOARDING_HOUSEEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Accounts" EntityType="Self.Account" />
+    <EntitySet Name="Categories" EntityType="Self.Category" />
+    <EntitySet Name="Comments" EntityType="Self.Comment" />
+    <EntitySet Name="Districts" EntityType="Self.District" />
+    <EntitySet Name="Histories" EntityType="Self.History" />
+    <EntitySet Name="Ratings" EntityType="Self.Rating" />
+    <EntitySet Name="Roles" EntityType="Self.Role" />
+    <EntitySet Name="Rooms" EntityType="Self.Room" />
+    <AssociationSet Name="FK_Account_Role" Association="Self.FK_Account_Role">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="Account" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comment_Account" Association="Self.FK_Comment_Account">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="Comment" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_History_Account" Association="Self.FK_History_Account">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="History" EntitySet="Histories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rating_Account" Association="Self.FK_Rating_Account">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="Rating" EntitySet="Ratings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Room_Account" Association="Self.FK_Room_Account">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="Room" EntitySet="Rooms" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Room_Category" Association="Self.FK_Room_Category">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Room" EntitySet="Rooms" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comment_Room" Association="Self.FK_Comment_Room">
+      <End Role="Room" EntitySet="Rooms" />
+      <End Role="Comment" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Room_District" Association="Self.FK_Room_District">
+      <End Role="District" EntitySet="Districts" />
+      <End Role="Room" EntitySet="Rooms" />
+    </AssociationSet>
+    <AssociationSet Name="FK_History_Room" Association="Self.FK_History_Room">
+      <End Role="Room" EntitySet="Rooms" />
+      <End Role="History" EntitySet="Histories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Rating_Room" Association="Self.FK_Rating_Room">
+      <End Role="Room" EntitySet="Rooms" />
+      <End Role="Rating" EntitySet="Ratings" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
