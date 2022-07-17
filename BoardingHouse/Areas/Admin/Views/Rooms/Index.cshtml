@@ -138,3 +138,15 @@
 
 
 </table>
+<input type="submit" id="btnExport" value="Export" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="~/Scripts/jquery.table2excel.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#btnExport").click(function () {
+            $("#example").table2excel({
+                filename: "Rooms.xls"
+            });
+        });
+    });
+</script>   
