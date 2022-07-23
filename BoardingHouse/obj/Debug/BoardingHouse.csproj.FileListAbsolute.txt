@@ -164,3 +164,7 @@ C:\Users\Admin\Documents\GitHub\BoardingHouse\BoardingHouse\obj\Debug\BoardingHo
 C:\Users\Admin\Documents\GitHub\BoardingHouse\BoardingHouse\obj\Debug\BoardingHouse.csproj.CopyComplete
 C:\Users\Admin\Documents\GitHub\BoardingHouse\BoardingHouse\obj\Debug\BoardingHouse.dll
 C:\Users\Admin\Documents\GitHub\BoardingHouse\BoardingHouse\obj\Debug\BoardingHouse.pdb
+C:\Users\Admin\Documents\GitHub\BoardingHouse\BoardingHouse\bin\PagedList.dll
+C:\Users\Admin\Documents\GitHub\BoardingHouse\BoardingHouse\bin\PagedList.Mvc.dll
+C:\Users\Admin\Documents\GitHub\BoardingHouse\BoardingHouse\bin\PagedList.xml
+C:\Users\Admin\Documents\GitHub\BoardingHouse\BoardingHouse\bin\PagedList.Mvc.xml
